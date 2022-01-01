@@ -1,43 +1,100 @@
-import React, { Fragment, useContext } from 'react';
+import React from 'react';
 import {
   CardStyleInterpolators,
   createStackNavigator,
   StackNavigationProp,
   StackScreenProps,
 } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
-import { View } from 'react-native';
-import Svg, { SvgProps, Path, Text } from "react-native-svg"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { CartScreen, ExploreScreen, FavoritesScreen, HomeScreen, LoginScreen, OrderAcceptedScreen, ProductDetailScreen, SearchScreen, SplashScreen, WelcomeScreen } from '../screens';
+import { Icon } from '../components';
+
+export type BottomTabParamList = {
+  HomeScreen: undefined;
+  ExploreScreen: undefined;
+  CartScreen: undefined;
+  FavoritesScreen: undefined;
+  AccountScreen: undefined;
+}
+
+const Tab = createBottomTabNavigator<BottomTabParamList>();
+
+
+const BottomTabBar = () => {
+  return (
+    <Tab.Navigator screenOptions={{ tabBarActiveTintColor: '#53B175', header: () => null }}>
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => <Icon name="shop" color={color} size={20} />,
+        }}
+      />
+      <Tab.Screen
+        name="ExploreScreen"
+        component={ExploreScreen}
+        options={{
+          tabBarLabel: 'Explore',
+          tabBarIcon: ({ color, size }) => <Icon name="explore" color={color} size={20} />,
+        }}
+      />
+      <Tab.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{
+          tabBarLabel: 'Cart',
+          tabBarIcon: ({ color, size }) => <Icon name="cart" color={color} size={20} />,
+        }}
+      />
+      <Tab.Screen
+        name="FavoritesScreen"
+        component={FavoritesScreen}
+        options={{
+          tabBarLabel: 'Favorites',
+          tabBarIcon: ({ color, size }) => <Icon name="favorites" color={color} size={20} />,
+        }}
+      />
+      <Tab.Screen
+        name="AccountScreen"
+        component={SplashScreen}
+        options={{
+          tabBarLabel: 'Account',
+          tabBarIcon: ({ color, size }) => <Icon name="account" color={color} size={20} />,
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export type RootStackParamList = {
-    screen: undefined;
+  SplashScreen: undefined;
+  BottomTab: BottomTabParamList;
+  OrderAcceptedScreen: undefined;
+  SearchScreen: undefined;
+  ProductDetailScreen: undefined;
+  LoginScreen: undefined;
+  WelcomeScreen: undefined;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
-
-const HomeScreen = () => {
-    return(
-        <View>
-        <Text>dwadwa</Text>
-  <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <Path d="M30 1h40l29 29v40L70 99H30L1 70V30z" stroke="#000" fill="none" />
-    <Path d="M31 3h38l28 28v38L69 97H31L3 69V31z" fill="#a23" />
-    <Text x={50} y={68} fontSize={48} fill="#FFF" textAnchor="middle" />
-        </Svg>
-      </View>
-    )
-}
-export const AppSwitchNavigator: React.FC = () => {
+export const RootStack: React.FC = () => {
     return (
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-            cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
-            gestureEnabled: false,
-            gestureDirection: 'vertical',
-          }}>
-      <Stack.Screen name="screen" component={HomeScreen} />
-    </Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+          gestureEnabled: false,
+          gestureDirection: 'vertical',
+        }}>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="BottomTab" component={BottomTabBar} />
+      <Stack.Screen name="OrderAcceptedScreen" component={OrderAcceptedScreen} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
+      <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      </Stack.Navigator>
     )
 }
-

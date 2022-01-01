@@ -1,16 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { AppSwitchNavigator } from './main';
+import { RootStack } from './main';
 
 export const AppContainer: React.FC = () => {
   return (
     <NavigationContainer>
-      {useMemo(
-        () => (
-          <AppSwitchNavigator />
-        ),
-        [],
-      )}
+      <RootStack />
     </NavigationContainer>
   );
 };
