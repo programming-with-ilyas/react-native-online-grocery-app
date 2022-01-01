@@ -88,8 +88,9 @@ export const RootStack: React.FC = () => {
           gestureEnabled: false,
           gestureDirection: 'vertical',
         }}>
+              <Stack.Screen name="BottomTab" component={BottomTabBar} />
+
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="BottomTab" component={BottomTabBar} />
       <Stack.Screen name="OrderAcceptedScreen" component={OrderAcceptedScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
