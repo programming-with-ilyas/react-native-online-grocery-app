@@ -7,7 +7,18 @@ import {
 } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { CartScreen, ExploreScreen, FavoritesScreen, HomeScreen, LoginScreen, OrderAcceptedScreen, ProductDetailScreen, SearchScreen, SplashScreen, WelcomeScreen } from '../screens';
+import {
+  CartScreen,
+  ExploreScreen,
+  FavoritesScreen,
+  HomeScreen,
+  LoginScreen,
+  OrderAcceptedScreen,
+  ProductDetailScreen,
+  SearchScreen,
+  SplashScreen,
+  WelcomeScreen,
+} from '../screens';
 import { Icon } from '../components';
 
 export type BottomTabParamList = {
@@ -16,10 +27,9 @@ export type BottomTabParamList = {
   CartScreen: undefined;
   FavoritesScreen: undefined;
   AccountScreen: undefined;
-}
+};
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
-
 
 const BottomTabBar = () => {
   return (
@@ -76,26 +86,38 @@ export type RootStackParamList = {
   ProductDetailScreen: undefined;
   LoginScreen: undefined;
   WelcomeScreen: undefined;
-}
+};
 
 const Stack = createStackNavigator<RootStackParamList>();
 export const RootStack: React.FC = () => {
-    return (
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
-          gestureEnabled: false,
-          gestureDirection: 'vertical',
-        }}>
-              <Stack.Screen name="BottomTab" component={BottomTabBar} />
-
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+        gestureEnabled: false,
+        gestureDirection: 'vertical',
+      }}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="BottomTab" component={BottomTabBar} />
       <Stack.Screen name="OrderAcceptedScreen" component={OrderAcceptedScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      </Stack.Navigator>
-    )
-}
+    </Stack.Navigator>
+  );
+};
+
+export type SplashScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SplashScreen'>;
+export type OrderAcceptedScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'OrderAcceptedScreen'
+>;
+export type SearchScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SearchScreen'>;
+export type ProductDetailScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'ProductDetailScreen'
+>;
+export type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
+export type WelcomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'WelcomeScreen'>;
